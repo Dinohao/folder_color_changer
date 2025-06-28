@@ -27,50 +27,6 @@ ICON_DIR="$SCRIPT_DIR/icons"
 
 FILEICON_TOOL="$SCRIPT_DIR/fileicon"
 
-# 如果 fileicon 工具不存在，就地編譯它
-if [ ! -f "$FILEICON_TOOL" ]; then
-    echo "正在首次設定，編譯 fileicon 工具..."
-    SWIFT_CODE=$(cat <<EOF
-import Foundation
-import AppKit
-
-// 移除頂層的參數數量檢查，改為依賴 switch 語句內部的精確檢查
-
-let command = CommandLine.arguments[1]
-let path = CommandLine.arguments[2]
-
-switch command {
-case "set":
-    if CommandLine.arguments.count != 4 {
-        print("Usage: fileicon set <path> <icon_path>")
-        exit(1)
-    }
-    let iconPath = CommandLine.arguments[3]
-    guard let icon = NSImage(contentsOfFile: iconPath) else {
-        print("Error: Could not load icon from \(iconPath)")
-        exit(1)
-    }
-    NSWorkspace.shared.setIcon(icon, forFile: path, options: [])
-case "rm":
-    if CommandLine.arguments.count != 3 {
-        print("Usage: fileicon rm <path>")
-        exit(1)
-    }
-    NSWorkspace.shared.setIcon(nil, forFile: path, options: [])
-default:
-    print("Unknown command \(command)")
-    exit(1)
-}
-EOF
-)
-    # 使用 swiftc 編譯程式碼
-    echo "$SWIFT_CODE" | swiftc -o "$FILEICON_TOOL" -
-    if [ $? -ne 0 ]; then
-        echo "錯誤: 編譯 fileicon 工具失敗。請確認您已安裝 Xcode Command Line Tools。"
-        exit 1
-    fi
-    echo "fileicon 工具編譯完成。"
-fi
 
 # --- 主要邏輯 --- #
 

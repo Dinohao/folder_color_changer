@@ -1,0 +1,7 @@
+.DS_Store
+Folder Color Changer.spec
+Icon
+build/
+dist/
+fileicon.swift
+icons/*.icns
