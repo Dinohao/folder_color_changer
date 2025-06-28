@@ -49,6 +49,29 @@ This is the simplest and most intuitive way to use the application.
 ### 2. Command Line Interface (CLI)
 ### 2. 命令列介面 (CLI)
 
+### 3. Packaged Executable
+### 3. 打包執行檔
+
+For a standalone application that doesn't require Python or virtual environment setup, you can use the packaged executable.
+對於不需要 Python 或虛擬環境設定的獨立應用程式，您可以使用打包好的執行檔。
+
+1.  **Locate the Executable**:
+    The executable can be found in the `dist` directory after the application has been built. The path will typically be `dist/Folder Color Changer/Folder Color Changer`.
+    **找到執行檔**：
+    執行檔在應用程式建置後會位於 `dist` 目錄中。路徑通常是 `dist/Folder Color Changer/Folder Color Changer`。
+
+2.  **Run the Application**:
+    You can run the application directly by double-clicking it in Finder, or by executing it from the terminal:
+    **執行應用程式**：
+    您可以直接在 Finder 中雙擊執行應用程式，或從終端機執行：
+    ```bash
+    /Users/dino/Desktop/folder_color_changer/dist/Folder\ Color\ Changer/Folder\ Color\ Changer
+    ```
+    This will launch the GUI application.
+    這將會啟動 GUI 應用程式。
+
+---
+
 For users who need automation or prefer command-line operations, the `color-folder.sh` script can be used.
 對於需要自動化或偏好命令列操作的使用者，可以使用 `color-folder.sh` 腳本。
 
